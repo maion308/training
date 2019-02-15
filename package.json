@@ -1,0 +1,17 @@
+{
+  "name": "training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "meadowlark.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "nodemon": "^1.18.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "michael ion",
+  "license": "MIT"
+}
