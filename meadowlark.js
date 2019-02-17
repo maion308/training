@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fortune = require('./lib/fortune');
 
 //set up handlebars view engine
 const handlebars = require('express-handlebars')
@@ -7,7 +8,6 @@ const handlebars = require('express-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-const port = process.env.PORT || 3000;
 
 //Note: order in which routes and middleware are added is significant
 
@@ -16,12 +16,15 @@ app.get('/',(req,res)=>{
 	res.render('home');
 });
 
-app.get('/about',(req,res)=>{
-	res.render('about');
-})
+app.get('/about', (req,res)=>{
+	res.render('about', {fortune: fortune.getFortune()});
+});
+
+	
 
 //middleware
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
+
 
 //middleware
 //custom 404 page
@@ -37,6 +40,8 @@ app.use((err,req,res,next)=>{
 	res.status(500);
 	res.render('500');
 });
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, ()=>{
 	console.log(`listening on port ${port}`);
